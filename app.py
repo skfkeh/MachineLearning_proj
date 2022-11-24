@@ -1,91 +1,158 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Nov 4 
-@author: jongwon Kim 
-         Deep.I Inc.
-"""
+# app.py
+import streamlit as st
+import pandas as pd
+import time
+from PIL import Image     # 이미지 처리 라이브러리
 
 
-import cv2
-import timeit
+# from sklearn.model_selection import train_test_split
+# from sklearn.metrics import accuracy_score
 
-# 영상 검출기
-def videoDetector(cam,cascade):
+# from sklearn.linear_model import LinearRegression
+
+
+########### function ###########
+def count_down(ts):
+    with st.empty():
+        input_time = 1*5
+        while input_time>=0:
+            minutes, seconds = input_time//60, input_time%60
+            st.metric("Countdown", f"{minutes:02d}:{seconds:02d}")
+            time.sleep(1)
+            input_time -= 1
+        st.empty()
+
+        
+def Logistic_algorithm(url):
+    df_train = pd.read_csv(url, index_col=0)
+
+    #### 결측치 처리
+    ## 1. Embarked 처리
+    df_train.Embarked.fillna('S', inplace=True)
+
+    ## 2. Cabin, Ticket Drop 처리
+    df_train.drop(columns=['Cabin', 'Ticket'], inplace=True)
+    df_train['Title'] = df_train.Name.str.extract('([a-zA-Z]+)\.')
+
+    ## 3. Age 처리
+    # Name에서 호칭 정리
+    title_unique = df_train.Title.unique()
+    rarelist = []
+    for t in title_unique:
+      if list(df_train.Title).count(t) < 10:
+        rarelist.append(t)
+
+    # 나이 평균 정의
+    title_age_mean = df_train.groupby(['Title'])['Age'].mean()
+    for t in df_train.Title.unique():
+      df_train.loc[(df_train.Age.isnull()) & (df_train.Title == t), 'Age'] = title_age_mean[t]
+
+    # Name, Title 컬럼 Drop
+    df_train.drop(columns=['Name', 'Title'], inplace=True)
+
+
+    ## 4. Sex, Embarked - dummy 화
+    df_train_dummy = pd.get_dummies(df_train, columns=['Sex', 'Embarked'], drop_first=True)
     
-    while True:
-        
-        start_t = timeit.default_timer()
-         # 알고리즘 시작 시점
-        """ 알고리즘 연산 """
-        
-        # 캡처 이미지 불러오기
-        ret,img = cam.read()
-        # 영상 압축
-        img = cv2.resize(img,dsize=None,fx=1.0,fy=1.0)
-        # 그레이 스케일 변환
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
-        # cascade 얼굴 탐지 알고리즘 
-        results = cascade.detectMultiScale(gray,            # 입력 이미지
-                                           scaleFactor= 1.1,# 이미지 피라미드 스케일 factor
-                                           minNeighbors=5,  # 인접 객체 최소 거리 픽셀
-                                           minSize=(20,20)  # 탐지 객체 최소 크기
-                                           )
-                                                                           
-        for box in results:
-            x, y, w, h = box
-            cv2.rectangle(img, (x,y), (x+w, y+h), (255,255,255), thickness=2)
-     
-        """ 알고리즘 연산 """ 
-        # 알고리즘 종료 시점
-        terminate_t = timeit.default_timer()
-        FPS = 'fps' + str(int(1./(terminate_t - start_t )))
-        cv2.putText(img,FPS,(30,30),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),1)
-        
-        
-         # 영상 출력        
-        cv2.imshow('facenet',img)
-        
-        if cv2.waitKey(1) > 0: 
-  
-            break
+    return df_train_dummy
 
-# 사진 검출기   
-def imgDetector(img,cascade):
+########### function ###########
+        
     
-    # 영상 압축
-    img = cv2.resize(img,dsize=None,fx=1.0,fy=1.0)
-    # 그레이 스케일 변환
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
-    # cascade 얼굴 탐지 알고리즘 
-    results = cascade.detectMultiScale(gray,            # 입력 이미지
-                                       scaleFactor= 1.5,# 이미지 피라미드 스케일 factor
-                                       minNeighbors=5,  # 인접 객체 최소 거리 픽셀
-                                       minSize=(20,20)  # 탐지 객체 최소 크기
-                                       )        
-        
-    for box in results:
-            
-        x, y, w, h = box
-        cv2.rectangle(img, (x,y), (x+w, y+h), (255,255,255), thickness=2)
+########### session ###########
+
+if 'chk_balloon' not in st.session_state:
+    st.session_state['chk_balloon'] = False
+
+if 'chk_strline' not in st.session_state:
+    st.session_state['chk_strline'] = ''
     
-    # 사진 출력        
-    cv2.imshow('facenet',img)  
-    cv2.waitKey(10000)
+if 'file_name' not in st.session_state:
+    st.session_state['file_name'] = ''
+    
+########### session ###########
+       
+
+########### define ###########
+
+# url = f'https://raw.githubusercontent.com/skfkeh/regression/main/data/{file_name}'
+
+########### define ###########
+    
+if st.session_state['chk_balloon'] == False:
+    count_down(5)
+    with st.spinner(text="Please wait..."):
+        time.sleep(1)
+
+    st.balloons()
+    st.session_state['chk_balloon'] = True
+
+
+
+
+st.title('Hello World!')
+
+image = Image.open('img/Patrick.jpeg')
+st.image(image)
+
+btn_choice = st.radio("분석 알고리즘을 골라주세요",
+               ("Linear", "Logistic", "KNN", "NaiveBayes", "DesicionTree", "RandomForest"))
+SearchBtn = st.button('Search')
+
+
+
+
+if btn_choice == 'Linear' and SearchBtn:
+    st.session_state['chk_strline'] = 'Linear'
+    
+if btn_choice == 'Logistic' and SearchBtn:
+    st.session_state['chk_strline'] = 'Logistic'
+    file_name = 'titanic.csv'
+    url = f'https://raw.githubusercontent.com/skfkeh/regression/main/data/{file_name}'
+
+    df = Logistic_algorithm(url)
+
+    x = df[df.drop(columns='Survived').columns]
+    y = df.Survived
+    
+    tsize = 0.2
+    rstate = 100
+
+if btn_choice == 'KNN' and SearchBtn:
+    st.session_state['chk_strline'] = 'KNN'
+
+if btn_choice == 'NaiveBayes' and SearchBtn:
+    st.session_state['chk_strline'] = 'NaiveBayes'
+
+if btn_choice == 'DesicionTree' and SearchBtn:
+    st.session_state['chk_strline'] = 'DesicionTree'
+
+if btn_choice == 'RandomForest' and SearchBtn:
+    st.session_state['chk_strline'] = 'RandomForest'
+
+
+st.write(st.session_state['chk_strline'])
+
+btn_chkbox = st.checkbox("WebCam")
+st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
     
 
 
-# 가중치 파일 경로
-cascade_filename = 'haarcascade_frontalface_alt.xml'
-# 모델 불러오기
-cascade = cv2.CascadeClassifier(cascade_filename)
+if btn_chkbox:
+    img_file_buffer = st.camera_input("Take a picture")
 
-# 영상 파일 
-cam = cv2.VideoCapture('sample.mp4')
-# 이미지 파일
-img = cv2.imread('sample.jpg')
+    if img_file_buffer is not None:
+        # To read image file buffer as a 3D uint8 tensor with PyTorch:
+        bytes_data = img_file_buffer.getvalue()
+        torch_img = torch.ops.image.decode_image(
+            torch.from_numpy(np.frombuffer(bytes_data, np.uint8)), 3
+        )
 
-# 영상 탐지기
-videoDetector(cam,cascade)
-# 사진 탐지기
-# imgDetector(cam,cascade)
+        # Check the type of torch_img:
+        # Should output: <class 'torch.Tensor'>
+        st.write(type(torch_img))
+
+        # Check the shape of torch_img:
+        # Should output shape: torch.Size([channels, height, width])
+        st.write(torch_img.shape)
