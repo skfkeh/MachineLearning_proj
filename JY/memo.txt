@@ -10,3 +10,7 @@ Arrival_Time
 Duration         
 Total_Stops      
 Additional_Info          
+
+* 시각화 방향
+월별 티켓값 비교
+Destination에 따른 가격 비교
