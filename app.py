@@ -96,14 +96,10 @@ image = Image.open('img/Patrick.jpeg')
 st.image(image)
 
 btn_choice = st.radio("분석 알고리즘을 골라주세요",
-               ("Linear", "Logistic", "KNN", "NaiveBayes", "DesicionTree", "RandomForest"))
+               ("Logistic", "KNN", "NaiveBayes", "DesicionTree", "RandomForest"))
 SearchBtn = st.button('Search')
 
 
-
-
-if btn_choice == 'Linear' and SearchBtn:
-    st.session_state['chk_strline'] = 'Linear'
     
 if btn_choice == 'Logistic' and SearchBtn:
     st.session_state['chk_strline'] = 'Logistic'
