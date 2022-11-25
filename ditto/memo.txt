@@ -1,0 +1,16 @@
+price 가 정답
+
+Airline          
+Date_of_Journey  
+Source   
+Destination 
+Route            제외 -> Total_stops가 대체
+Dep_Time         
+Arrival_Time
+Duration         
+Total_Stops      
+Additional_Info          
+
+* 시각화 방향
+월별 티켓값 비교
+Destination에 따른 가격 비교
