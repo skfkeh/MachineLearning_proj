@@ -114,7 +114,14 @@ file_name = 'Data_Train.csv'
 url = f'https://raw.githubusercontent.com/skfkeh/newthing/main/{file_name}'
 
 ########### define ###########
-    
+
+
+
+
+################################
+#####       UI Start       #####
+################################
+
 if st.session_state['chk_balloon'] == False:
     count_down(5)
     with st.spinner(text="Please wait..."):
@@ -122,11 +129,6 @@ if st.session_state['chk_balloon'] == False:
 
     st.balloons()
     st.session_state['chk_balloon'] = True
-
-
-################################
-#####       UI Start       #####
-################################
 
 
 options = st.sidebar.radio('Why is my airfare expensive?!', options=['01. Home','02. 데이터 전처리 과정','03. 시각화(plotly)'])
@@ -138,19 +140,40 @@ if options == '01. Home':
     st.title('내 항공료는 왜 비싼 것인가')
     st.header('다음 항목은 사이드 메뉴를 확인해 주세요.')
 
-    jpg_url = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/00f3d481-97e5-4de9-bcf2-48c82b265793/d7uteu8-e50dde9e-b8af-4fea-ab31-b7748470dc8b.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzAwZjNkNDgxLTk3ZTUtNGRlOS1iY2YyLTQ4YzgyYjI2NTc5M1wvZDd1dGV1OC1lNTBkZGU5ZS1iOGFmLTRmZWEtYWIzMS1iNzc0ODQ3MGRjOGIuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.X7DaOWcJkNe2H8jjTNtybdRCV9p5u4H_yFaOk7kMbFg"
+    jpg_url = "https://github.com/skfkeh/newthing/blob/main/img/why.png?raw=true"
     # st.set_page_config(layout="wide")
     st.image(jpg_url, caption="Why So Serious??!")
 
     st.write(f"사용한 데이터 URL : {url}")
 
 elif options == '02. 데이터 전처리 과정':
-    st.image('https://www.rd.com/wp-content/uploads/2022/04/GettyImages-1140602972-e1651249657746.jpg')
+    st.image('https://github.com/skfkeh/newthing/blob/main/img/plane_img.png?raw=true')
     df = pd.read_csv(url)
     
-    st.write("1. 확인을 위한 df.head()")
+    st.write("1. df.head()로 데이터 확인")
     st.dataframe(df.head())
     
+    st.write("2. Route Drop 처리")
+    code_Route = '''df.drop('Route', axis=1, inplace=True)'''
+    st.code(code_Route, language='python')
+    
+    st.write("3. Duration 컬럼을 '시간'과 '분' 단위로 분할 후 Duration 컬럼 drop")
+    code_Dep = '''df['Dep_Time'] = pd.to_datetime(df['Dep_Time'], format= '%H:%M').dt.time
+    df['Duration_hour'] = df.Duration.str.extract('(\d+)h')
+    df['Duration_min'] = df.Duration.str.extract('(\d+)m').fillna(0)
+    
+    df.Duration_hour = df.Duration_hour.astype('int64')
+    df.Duration_min = df.Duration_min.astype('int64')
+    df.Duration_hour = df.Duration_hour*60
+    df['Duration_total'] = df.Duration_hour+df.Duration_min
+    '''
+    st.code(code_Dep, language='python')    
+    
+    code_airlist = '''airlist = [l for l in air_count if list(df.Airline).count(l) < 200]
+    df.Airline = df.Airline.replace(airlist, 'Others')
+    '''
+    
+    st.code(code_airlist, language='python')
     
     pre_data = preprocessing(df)
     
