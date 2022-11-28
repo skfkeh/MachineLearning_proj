@@ -313,7 +313,7 @@ df.drop(columns=['Dep_Time'],inplace=True)'''
     df = preprocess_Dummy(df)
     st.dataframe(df.head())
     
-    st.image('https://github.com/skfkeh/newthing/blob/main/img/plane_landing.png?raw=true')
+    st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/plane_landing.png?raw=true')
 
     
 ################################
@@ -356,8 +356,8 @@ elif options == '03. 알고리즘 적용':
         # 훈련 모델 시각화
         st.subheader('모델 훈련이 잘 되었는지 시각화')
         r1_col, r2_col = st.columns(2)
-        r1_col.image('https://github.com/skfkeh/newthing/blob/main/img/first_pred_dt.png?raw=true',caption='초기 파라미터 값 그래프')
-        r2_col.image('https://github.com/skfkeh/newthing/blob/main/img/optim_pred_dt.png?raw=true',caption='최적의 파라미터 적용 그래프')
+        r1_col.image('https://github.com/skfkeh/MachineLearning/blob/main/img/first_pred_dt.png?raw=true',caption='초기 파라미터 값 그래프')
+        r2_col.image('https://github.com/skfkeh/MachineLearning/blob/main/img/optim_pred_dt.png?raw=true',caption='최적의 파라미터 적용 그래프')
 
         # 기본값일 때 결정계수
         st.subheader('RMSE 비교')
@@ -403,8 +403,8 @@ elif options == '03. 알고리즘 적용':
         # 훈련 모델 시각화
         st.subheader('모델 훈련이 잘 되었는지 시각화')
         r1_col, r2_col = st.columns(2)
-        r1_col.image('https://github.com/skfkeh/newthing/blob/main/img/first_pred_rf.png?raw=true',caption='초기 파라미터 값 그래프')
-        r2_col.image('https://github.com/skfkeh/newthing/blob/main/img/optim_pred_rf.png?raw=true',caption='최적의 파라미터 적용 그래프')
+        r1_col.image('https://github.com/skfkeh/MachineLearning/blob/main/img/first_pred_rf.png?raw=true',caption='초기 파라미터 값 그래프')
+        r2_col.image('https://github.com/skfkeh/MachineLearning/blob/main/img/optim_pred_rf.png?raw=true',caption='최적의 파라미터 적용 그래프')
 
         st.subheader('RMSE 비교') 
         train_relation_square_rf = mean_squared_error(y_train, train_pred_rf, squared=False)
