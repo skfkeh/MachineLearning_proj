@@ -138,7 +138,7 @@ if 'file_name' not in st.session_state:
 
 ########### define ###########
 file_name = 'Data_Train.csv'
-url = f'https://raw.githubusercontent.com/skfkeh/MachineLearning/main/{file_name}'
+url = f'https://raw.githubusercontent.com/skfkeh/MachineLearning/main/Resource/{file_name}'
 keys = random.sample(range(1000, 9999), 3)
 ########### define ###########
 
