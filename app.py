@@ -547,18 +547,28 @@ df.Duration_min = df.Duration_min.astype('int64')'''
     st.write('해결책 : train 데이터 자체에서 훈련셋/시험셋을 구분')
     st.markdown('---')
     
-    st.subheader('3. 각 알고리즘 합치기')
+    st.subheader('3. session error')
+    st.write('button 혹은 tab 전환 등의 이벤트가 발생 시마다')
+    st.write('streamlit 전체 소스가 재실행되어 balloon 함수가 반복 실행되었음')
+    st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/code_session_error.png?raw=true')
+    code_session = '''if 'chk_balloon' not in st.session_state:
+    st.session_state['chk_balloon'] = False'''
+    st.code(code_session, language='python')
+    st.markdown('---')
+    
+    st.subheader('4. 각 알고리즘 합치기')
     st.write('각 알고리즘의 key 값이 충돌해서 plotly 그래프가 그려지지 않는 문제 발생')
     st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/merge%20algorithm_key%20error.png?raw=true', caption="streamlit error 화면")
     st.write('해결책 : 각 알고리즘의 고유 변수명으로 변경 및 key값 부여')
     code_merge_error = '''keys = random.sample(range(1000, 9999), 3)'''
     st.code(code_merge_error, language='python')
     st.markdown('---')
-    
-    st.subheader('4. streamlit - xgboost')
-    st.write('streamlit에서 xgboost 모델이 없다는 오류 발생')
-    st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/xgb_error.png?raw=true', caption="streamlit_xgboost_error")
-    st.write('해결책 : ')
 
-    
+    st.subheader('5. streamlit - xgboost')
+    st.write('streamlit에서 xgboost 모델이 없다는 오류 발생')
+    st.write('첫 번째 접근 : pkl파일 문제가있는 것으로 접근하여 -> model = xgb.XGBRegressor(objective='reg:squarederror')코드 추가')
+    st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/xgb_error.png?raw=true', caption="streamlit_xgboost_error")
+    st.write('해결책 : streamlib을 구축한 환경과 같은 환경에서 개발하는것이 가장좋은 방법이나 여의치 않다면..')
+    st.write('1.import 한 모듈의 버전체크 - 로컬 & Colab간 개발환경 일치화')
+    st.write('2. requirement를 포함하는 저장소에 파일추가')
     
