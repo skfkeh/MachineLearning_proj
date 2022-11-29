@@ -566,7 +566,7 @@ df.Duration_min = df.Duration_min.astype('int64')'''
 
     st.subheader('5. streamlit - xgboost')
     st.write('streamlit에서 xgboost 모델이 없다는 오류 발생')
-    st.write('첫 번째 접근 : pkl파일 문제가있는 것으로 접근하여 -> model = xgb.XGBRegressor(objective='reg:squarederror')코드 추가')
+    st.write("첫 번째 접근 : pkl파일 문제가있는 것으로 접근하여 -> model = xgb.XGBRegressor(objective='reg:squarederror')코드 추가")
     st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/xgb_error.png?raw=true', caption="streamlit_xgboost_error")
     st.write('해결책 : streamlib을 구축한 환경과 같은 환경에서 개발하는것이 가장좋은 방법이나 여의치 않다면..')
     st.write('1.import 한 모듈의 버전체크 - 로컬 & Colab간 개발환경 일치화')
