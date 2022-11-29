@@ -427,7 +427,7 @@ elif options == '03. 알고리즘 적용':
     with tab_XGB:
         st.header("XGBoost")
         # score 와 mse 비교
-        model_pkl_path_xg = f"{os.path.dirname(os.path.abspath(__file__))}/XGBoost.pkl"
+        model_pkl_path_xg = f"{os.path.dirname(os.path.abspath(__file__))}/XGBoost_02.pkl"
         model_xg = joblib.load(model_pkl_path_xg)
         
         # 파라미터 변경해가며 예측
