@@ -469,7 +469,8 @@ elif options == '05. Error!!':
     
     st.write('각 알고리즘의 key 값이 충돌해서 plotly 그래프가 그려지지 않는 문제 발생')
     st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/merge%20algorithm_key%20error.png?raw=true', caption="streamlit error 화면")
-    
-    
+    st.write('해결책 : 각 알고리즘의 고유 변수명으로 변경 및 key값 부여')
+    code_merge_error = '''keys = random.sample(range(1000, 9999), 3)'''
+    st.code(code_merge_error, language='python')
     
     
