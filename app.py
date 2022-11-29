@@ -444,14 +444,14 @@ elif options == '03. 알고리즘 적용':
         train_relation_square_rf = mean_squared_error(y_train, train_pred_rf, squared=False)
 #         st.session_state['rmse_train_rf'] = mean_squared_error(y_train, train_pred_rf, squared=False)
         test_relation_square_rf = mean_squared_error(y_test, test_pred_rf) ** 0.5
-<<<<<<< HEAD
+
         st.write(f'train RMSE : {train_relation_square_rf}')
         st.write(f'test RMSE : {test_relation_square_rf}')
-=======
+
 #         st.session_state['rmse_test_rf'] = mean_squared_error(y_test, test_pred_rf) ** 0.5
         st.write(f'train 결정계수 : {train_relation_square_rf}')
         st.write(f'test 결정계수 : {test_relation_square_rf}')
->>>>>>> 6e9503af7f3737ceb27c82b02696cff7fafb75c6
+
 
         st.subheader('시각화 부분')
 #         CheckBox_rf = st.checkbox('plotly 활성화')
