@@ -446,39 +446,41 @@ elif options == '03. 알고리즘 적용':
     #### Tab3
     with tab_XGB:
         st.header("XGBoost")
+        
+        st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/emergency.jpeg?raw=true', caption='모듈의 버전차이로 인해')
         # score 와 mse 비교
-        model_pkl_path_xg = f"{os.path.dirname(os.path.abspath(__file__))}/XGBoost_02.pkl"
-        model_xg = joblib.load(model_pkl_path_xg)
+#        model_pkl_path_xg = f"{os.path.dirname(os.path.abspath(__file__))}/XGBoost_02.pkl"
+#        model_xg = joblib.load(model_pkl_path_xg)
         
         # 파라미터 변경해가며 예측
-        st.subheader('예측하기')
-        train_pred_xg = model_xg.predict(X_train)
-        test_pred_xg = model_xg.predict(X_test)
+#        st.subheader('예측하기')
+#        train_pred_xg = model_xg.predict(X_train)
+#        test_pred_xg = model_xg.predict(X_test)
 #         st.write(f'Train-set : {model_xg.score(X_train, y_train)}')
 #         st.write(f'Test-set : {model_xg.score(X_test, y_test)}')
         
         # 훈련 모델 시각화
-        st.subheader('모델 훈련이 잘 되었는지 시각화')
-        r1_col, r2_col = st.columns(2)
-        r1_col.image('https://github.com/skfkeh/MachineLearning/blob/main/img/first_pred_xgb.png?raw=true',caption='초기 파라미터 값 그래프')
-        r2_col.image('https://github.com/skfkeh/MachineLearning/blob/main/img/optim_pred_xgb.png?raw=true',caption='최적의 파라미터 적용 그래프')
+#        st.subheader('모델 훈련이 잘 되었는지 시각화')
+#        r1_col, r2_col = st.columns(2)
+#        r1_col.image('https://github.com/skfkeh/MachineLearning/blob/main/img/first_pred_xgb.png?raw=true',caption='초기 파라미터 값 그래프')
+#        r2_col.image('https://github.com/skfkeh/MachineLearning/blob/main/img/optim_pred_xgb.png?raw=true',caption='최적의 파라미터 적용 그래프')
         
         # 기본값일 때 결정계수
-        st.subheader('RMSE 비교')
-        train_relation_square_xg = model_xg.score(X_train, y_train)
-        test_relation_square_xg = model_xg.score(X_test, y_test)
-        st.write(f'Train 결정계수 : {train_relation_square_xg}')
-        st.write(f'Test 결정계수 : {test_relation_square_xg}')
+#        st.subheader('RMSE 비교')
+#        train_relation_square_xg = model_xg.score(X_train, y_train)
+#        test_relation_square_xg = model_xg.score(X_test, y_test)
+#        st.write(f'Train 결정계수 : {train_relation_square_xg}')
+#        st.write(f'Test 결정계수 : {test_relation_square_xg}')
         
-        st.subheader('시각화 부분')
+#        st.subheader('시각화 부분')
         # CheckBox_dt = st.checkbox('plotly 활성화')
 #         if CheckBox_dt:
         # 시각화 해보기
-        fig_xg = make_subplots(rows = 1, cols = 1, shared_xaxes = True)
-        fig_xg.add_trace(go.Scatter(x = y_train, y = y_test, mode = 'markers', name = 'Actual_xg'))
-        fig_xg.add_trace(go.Scatter(x = y_test, y = test_pred_xg, mode = 'markers', name = 'Predict_xg'))
-        fig_xg.update_layout(title = '<b>actual과 predict 비교_xg')
-        st.plotly_chart(fig_xg, key = keys[2])
+#        fig_xg = make_subplots(rows = 1, cols = 1, shared_xaxes = True)
+#        fig_xg.add_trace(go.Scatter(x = y_train, y = y_test, mode = 'markers', name = 'Actual_xg'))
+#        fig_xg.add_trace(go.Scatter(x = y_test, y = test_pred_xg, mode = 'markers', name = 'Predict_xg'))
+#        fig_xg.update_layout(title = '<b>actual과 predict 비교_xg')
+#        st.plotly_chart(fig_xg, key = keys[2])
         
 elif options == '04. 우수 모델 선정':
     st.title('우수 모델')
