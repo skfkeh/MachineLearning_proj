@@ -440,7 +440,7 @@ elif options == '03. 알고리즘 적용':
         # 시각화 해보기
         fig_rf = make_subplots(rows=1, cols=1, shared_xaxes=True)
         fig_rf.add_trace(go.Scatter(x=y_train,y=y_test, mode='markers',name='Actual_rf'))
-        fig_rf.add_trace(go.Scatter(x=y_test, y=test_pred_rf, mode='markers', name='Predict_rf')) # mode='lines+markers'
+        fig_rf.add_trace(go.Scatter(x=y_test, y=test_pred_rf, 2mode='markers', name='Predict_rf')) # mode='lines+markers'
         fig_rf.update_layout(title='<b>actual과 predict 비교_rf')
         st.plotly_chart(fig_rf, key = keys[1])
         
@@ -486,6 +486,9 @@ elif options == '03. 알고리즘 적용':
         
 elif options == '04. 우수 모델 선정':
     st.title('우수 모델')
+    
+    st.write(f'Train-set : {model_rf.score(X_train, y_train)}')
+    st.write(f'Test-set : {model_rf.score(X_test, y_test)}')
 
 elif options == '05. Error!!':
     st.title('이게 참 어려웠지~(아련)')
