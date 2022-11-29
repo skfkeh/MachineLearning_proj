@@ -325,7 +325,6 @@ elif options == '03. 알고리즘 적용':
 
     st.subheader('Heatmap 기반으로 column 값이 가장 관련 있는지 확인')
     visible_cb = st.checkbox('분석 정보')
-    st.markdown('---')
     st.write('''
     
     
@@ -338,6 +337,8 @@ elif options == '03. 알고리즘 적용':
         st.write('- Decision Tree')
         st.write('- RandomForest')
         st.write('- XGBoost')
+    st.markdown('---')
+    
     
     tab_DT, tab_RF, tab_XGB = st.tabs(["DecisionTree", "RandomForest", "XGBoost"])
 
