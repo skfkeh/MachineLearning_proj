@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import os
 import time
+import graphviz
 from PIL import Image     # 이미지 처리 라이브러리
 
 import matplotlib.pyplot as plt 
@@ -422,6 +423,17 @@ elif options == '03. 알고리즘 적용':
         fig_rf.add_trace(go.Scatter(x=y_test, y=test_pred_rf, mode='markers', name='Predict_rf')) # mode='lines+markers'
         fig_rf.update_layout(title='<b>actual과 predict 비교_rf')
         st.plotly_chart(fig_rf, key = keys[1])
+        
+        graph = graphviz.Digraph()
+        graph.edge('A', 'B')
+        graph.edge('A', 'C')
+        
+        graph.edge('B', 'D')
+        graph.edge('B', 'E')
+        graph.edge('C', 'F')
+        graph.edge('C', 'G')
+        
+        st.graphviz_chart(graph)
 
     #### Tab3
     with tab_XGB:
