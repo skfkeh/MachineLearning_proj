@@ -448,9 +448,6 @@ elif options == '03. 알고리즘 적용':
         st.write(f'train RMSE : {train_relation_square_rf}')
         st.write(f'test RMSE : {test_relation_square_rf}')
 
-#         st.session_state['rmse_test_rf'] = mean_squared_error(y_test, test_pred_rf) ** 0.5
-        st.write(f'train 결정계수 : {train_relation_square_rf}')
-        st.write(f'test 결정계수 : {test_relation_square_rf}')
 
 
         st.subheader('시각화 부분')
