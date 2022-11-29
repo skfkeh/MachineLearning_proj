@@ -324,8 +324,8 @@ elif options == '03. 알고리즘 적용':
     st.title("분석 알고리즘에 따른 predict 값 ")
 
     st.subheader('Heatmap 기반으로 column 값이 가장 관련 있는지 확인')
-    visible_btn = st.button('분석 정보')
-    if visible_btn:
+    visible_cb = st.checkbox('분석 정보')
+    if visible_cb:
         st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/flight_heatmap.jpg?raw=true', caption='Price값은 Duration_total column과 가장 관련이 깊었다.')
         st.write('위 정보를 기반으로 각 알고리즘에 맞춰 분석해보자.')
         st.write('사용된 분석 알고리즘')
