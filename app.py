@@ -378,6 +378,23 @@ elif options == '03. 알고리즘 적용':
         fig_dt.update_layout(title='<b>actual과 predict 비교_dt')
         st.plotly_chart(fig_dt, key = keys[0])
         
+        i = 0
+        graph_title = f'X[{i}] <= '
+        graph_squared = f'squared_error = '
+        graph_sample = f'samples = '
+        graph_value = f'value = '
+        
+        graph = graphviz.Digraph()
+        graph.edge(f'{graph_title}297.5', 'B')
+        graph.edge(f'{graph_title}297.5', 'C')
+        
+        graph.edge('B', 'D')
+        graph.edge('B', 'E')
+        graph.edge('C', 'F')
+        graph.edge('C', 'G')
+        
+        st.graphviz_chart(graph)
+        
     #### Tab2
     with tab_RF:
         st.header("RandomForest")
@@ -424,16 +441,6 @@ elif options == '03. 알고리즘 적용':
         fig_rf.update_layout(title='<b>actual과 predict 비교_rf')
         st.plotly_chart(fig_rf, key = keys[1])
         
-        graph = graphviz.Digraph()
-        graph.edge('A', 'B')
-        graph.edge('A', 'C')
-        
-        graph.edge('B', 'D')
-        graph.edge('B', 'E')
-        graph.edge('C', 'F')
-        graph.edge('C', 'G')
-        
-        st.graphviz_chart(graph)
 
     #### Tab3
     with tab_XGB:
