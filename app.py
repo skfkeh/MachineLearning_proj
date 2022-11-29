@@ -469,6 +469,7 @@ elif options == '03. 알고리즘 적용':
         st.header("XGBoost")
         
         st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/emergency.jpeg?raw=true', caption='모듈의 버전차이로 인해 다른 화면에서 추가 설명')
+        st.write('https://drive.google.com/file/d/15qdCmQ0WY8l_nPhYX4AiYoGi2HE48l-6/view?usp=sharing')
         # score 와 mse 비교
 #         model_pkl_path_xg = f"{os.path.dirname(os.path.abspath(__file__))}/XGBoost_02.pkl"
 #         model_xg = joblib.load(model_pkl_path_xg)
