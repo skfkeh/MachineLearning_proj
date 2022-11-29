@@ -526,8 +526,8 @@ elif options == '04. 우수 모델 선정':
     
     st.table(rmse_dt)
     
-    st.success('XGBoost의 간격이 가장 크므로 가장 효율적이라고 할 수 있다.', icon="✅")
-#     st.write('XGBoost의 간격이 가장 크므로 가장 효율적이라고 할 수 있다.')
+    st.success('RandomForest의 간격이 가장 작으므로 가장 효율적이라고 할 수 있다.', icon="✅")
+#     st.write('RandomForest의 간격이 가장 작으므로 가장 효율적이라고 할 수 있다.')
     
 elif options == '05. Error!!':
     st.title('이게 참 어려웠지~(아련)')
