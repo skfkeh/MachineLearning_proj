@@ -543,7 +543,7 @@ df.Duration_min = df.Duration_min.astype('int64')'''
     
     st.subheader('2. 훈련셋/시험셋')
     st.write('test 파일에 종속변수인 Price컬럼이 비어있어서(NaN) 데이터 전처리 불가능')
-    st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/train_test_error.PNG?raw=true', caption="test_file_NaN")
+    st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/train_test_error2.png?raw=true', caption="test_file_NaN")
     st.write('해결책 : train 데이터 자체에서 훈련셋/시험셋을 구분')
     st.markdown('---')
     
