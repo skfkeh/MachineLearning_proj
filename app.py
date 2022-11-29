@@ -425,7 +425,7 @@ elif options == '03. 알고리즘 적용':
 
     #### Tab3
     with tab_XGB:
-       st.header("XGBoost")
+        st.header("XGBoost")
         # score 와 mse 비교
         model_pkl_path_xg = f"{os.path.dirname(os.path.abspath(__file__))}/XGBoost.pkl"
         model_xg = joblib.load(model_pkl_path_xg)
