@@ -381,12 +381,11 @@ elif options == '03. 알고리즘 적용':
         i = 0
         x_num = 0
         squared_num = 0
-        graph_txt = f'X[{i}] <= {x_num}\nsquared_error = {squared_num}\n'
-        graph_squared = f'squared_error = '
-        graph_sample = f'samples = '
-        graph_value = f'value = '
+        sample_num = 0  
+        graph_txt = f'X[{i}] <= {x_num}\nsquared_error = {squared_num}\nsampl = {sample_num}'
         
         graph = graphviz.Digraph()
+        i, x_num, squared_num, sample_num = 1, 297.5, 21160142.24, 8545
         graph.edge(f'{graph_txt}', 'B')
         graph.edge(f'{graph_txt}', 'C')
         
