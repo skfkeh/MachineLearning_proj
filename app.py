@@ -389,13 +389,13 @@ elif options == '03. 알고리즘 적용':
 
         # 기본값일 때 결정계수
         st.subheader('RMSE 비교')
-        train_relation_square_dt = model_dt.score(X_train, y_train)
+        train_relation_square_dt = mean_squared_error_dt(y_train, train_pred, squared=False)
 #         st.session_state['rmse_train_dt'] = model_dt.score(X_train, y_train)
-        test_relation_square_dt = model_dt.score(X_test, y_test)
+        test_relation_square_dt = mean_squared_error_dt(y_test, test_pred) ** 0.5
 #         st.session_state['rmse_test_dt'] = model_dt.score(X_test, y_test)
         
-        st.write(f'Train 결정계수 : {train_relation_square_dt}')
-        st.write(f'Test 결정계수 : {test_relation_square_dt}')
+        st.write(f'Train RMSE : {train_relation_square_dt}')
+        st.write(f'Test RMSE : {test_relation_square_dt}')
         
         st.subheader('시각화 부분')
 #         CheckBox_dt = st.checkbox('plotly 활성화')
