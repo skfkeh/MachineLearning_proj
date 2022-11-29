@@ -379,14 +379,16 @@ elif options == '03. 알고리즘 적용':
         st.plotly_chart(fig_dt, key = keys[0])
         
         i = 0
-        graph_title = f'X[{i}] <= '
+        x_num = 0
+        squared_num = 0
+        graph_txt = f'X[{i}] <= {x_num}\nsquared_error = {squared_num}\n'
         graph_squared = f'squared_error = '
         graph_sample = f'samples = '
         graph_value = f'value = '
         
         graph = graphviz.Digraph()
-        graph.edge(f'{graph_title}297.5', 'B')
-        graph.edge(f'{graph_title}297.5', 'C')
+        graph.edge(f'{graph_txt}', 'B')
+        graph.edge(f'{graph_txt}', 'C')
         
         graph.edge('B', 'D')
         graph.edge('B', 'E')
