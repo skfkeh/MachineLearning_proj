@@ -173,7 +173,7 @@ options = st.sidebar.radio('Why is my airfare expensive?!', options=['01. Home',
 #    df = pd.read_excel(url)
 
 if options == '01. Home':
-    st.title('내 항공료는 왜 비싼 것인가')
+    st.title('내 항공료는 왜 비싼거냥')
     st.write('다음 항목은 사이드 메뉴를 확인해 주세요.')
 
     jpg_url = "https://github.com/skfkeh/MachineLearning/blob/main/img/why.png?raw=true"
