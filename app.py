@@ -181,6 +181,8 @@ if options == '01. Home':
     st.image(jpg_url, caption="Why So Serious??!")
 
     st.write(f"사용한 데이터 URL : {url}")
+    
+    st.write('구성원 : 정승환    문지예   이준형   김은성')
 
 elif options == '02. 데이터 전처리 과정':
     st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/plane_img.png?raw=true')
