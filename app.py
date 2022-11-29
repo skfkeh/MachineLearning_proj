@@ -156,7 +156,7 @@ keys = random.sample(range(1000, 9999), 3)
 #    st.session_state['chk_balloon'] = True
 
 
-options = st.sidebar.radio('Why is my airfare expensive?!', options=['01. Home','02. 데이터 전처리 과정','03. 알고리즘 적용', '04. 우수 모델 선정'])
+options = st.sidebar.radio('Why is my airfare expensive?!', options=['01. Home','02. 데이터 전처리 과정','03. 알고리즘 적용', '04. 우수 모델 선정', '05. Error!!'])
 
 # if uploaded_file:
 #    df = pd.read_excel(url)
@@ -434,14 +434,14 @@ elif options == '03. 알고리즘 적용':
         st.subheader('예측하기')
         train_pred_xg = model_xg.predict(X_train)
         test_pred_xg = model_xg.predict(X_test)
-        st.write(f'Train-set : {model_xg.score(X_train, y_train)}')
-        st.write(f'Test-set : {model_xg.score(X_test, y_test)}')
+#         st.write(f'Train-set : {model_xg.score(X_train, y_train)}')
+#         st.write(f'Test-set : {model_xg.score(X_test, y_test)}')
         
         # 훈련 모델 시각화
         st.subheader('모델 훈련이 잘 되었는지 시각화')
         r1_col, r2_col = st.columns(2)
-        # r1_col.image('https://github.com/skfkeh/newthing/blob/main/img/first_pred_dt.png?raw=true',caption='초기 파라미터 값 그래프')
-        # r2_col.image('https://github.com/skfkeh/newthing/blob/main/img/optim_pred_dt.png?raw=true',caption='최적의 파라미터 적용 그래프')
+        r1_col.image('https://github.com/skfkeh/MachineLearning/blob/main/img/first_pred_xgb.png?raw=true',caption='초기 파라미터 값 그래프')
+        r2_col.image('https://github.com/skfkeh/MachineLearning/blob/main/img/optim_pred_xgb.png?raw=true',caption='최적의 파라미터 적용 그래프')
         
         # 기본값일 때 결정계수
         st.subheader('RMSE 비교')
@@ -462,3 +462,6 @@ elif options == '03. 알고리즘 적용':
         
 elif options == '04. 우수 모델 선정':
     st.title('우수 모델')
+
+elif options == '05. Error!!':
+    st.title('이게 참 어려웠지~(아련)')
