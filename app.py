@@ -395,7 +395,7 @@ elif options == '03. 알고리즘 적용':
         fig_dt.update_layout(title='<b>actual과 predict 비교_dt')
         st.plotly_chart(fig_dt, key = keys[0])
 
-        st.write('Decision Tree')
+        st.subheader('Decision Tree')
         st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/dt_graph.png?raw=true')
         
     #### Tab2
