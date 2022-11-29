@@ -335,6 +335,14 @@ elif options == '03. 알고리즘 적용':
     y = df.Price
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=100)
     
+    st.subheader('Heatmap 기반으로 column 값이 가장 관련 있는지 확인')
+    st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/flight_heatmap.jpg?raw=true', caption='Price값은 Duration_total column과 가장 관련이 깊었다.')
+    st.write('위 정보를 기반으로 각 알고리즘에 맞춰 분석해보자.')
+    st.write('사용된 분석 알고리즘')
+    st.write('- Decision Tree')
+    st.write('- RandomForest')
+    st.write('- XGBoost')
+    
     #### Tab1
     with tab_DT:
         st.header("DecisionTree")
@@ -377,24 +385,8 @@ elif options == '03. 알고리즘 적용':
         fig_dt.add_trace(go.Scatter(x=y_test, y=test_pred_dt, mode='markers',name='Predict_dt'))
         fig_dt.update_layout(title='<b>actual과 predict 비교_dt')
         st.plotly_chart(fig_dt, key = keys[0])
-        
-        i = 0
-        x_num = 0
-        squared_num = 0
-        sample_num = 0  
-        graph_txt = f'X[{i}] <= {x_num}\nsquared_error = {squared_num}\nsampl = {sample_num}'
-        
-        graph = graphviz.Digraph()
-        i, x_num, squared_num, sample_num = 1, 297.5, 21160142.24, 8545
-        graph.edge(f'{graph_txt}', 'B')
-        graph.edge(f'{graph_txt}', 'C')
-        
-        graph.edge('B', 'D')
-        graph.edge('B', 'E')
-        graph.edge('C', 'F')
-        graph.edge('C', 'G')
-        
-        st.graphviz_chart(graph)
+
+        st.image('https://github.com/skfkeh/MachineLearning/blob/main/img/dt_graph.png?raw=true')
         
     #### Tab2
     with tab_RF:
