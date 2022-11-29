@@ -389,9 +389,9 @@ elif options == '03. 알고리즘 적용':
 
         # 기본값일 때 결정계수
         st.subheader('RMSE 비교')
-        train_relation_square_dt = mean_squared_error_dt(y_train, train_pred_dt, squared=False)
+        train_relation_square_dt = mean_squared_error(y_train, train_pred_dt, squared=False)
 #         st.session_state['rmse_train_dt'] = model_dt.score(X_train, y_train)
-        test_relation_square_dt = mean_squared_error_dt(y_test, test_pred_dt) ** 0.5
+        test_relation_square_dt = mean_squared_error(y_test, test_pred_dt) ** 0.5
 #         st.session_state['rmse_test_dt'] = model_dt.score(X_test, y_test)
         
         st.write(f'Train RMSE : {train_relation_square_dt}')
